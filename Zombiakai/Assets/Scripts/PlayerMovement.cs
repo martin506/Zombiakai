@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public RectTransform handlePos;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,5 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
+
+        Vector2 handlePosition = new Vector2(handlePos.anchoredPosition.x, handlePos.anchoredPosition.y);
+
+        Vector2 lookDir = handlePosition;
+
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+
+        rb.rotation = angle;
     }
 }
