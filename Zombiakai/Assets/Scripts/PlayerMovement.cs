@@ -6,8 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float runSpeed = 40f;
 
-    float horizontalMove = 0f;
-    float verticalMove = 0f;
+    Vector2 movement;
 
     public Joystick joystick;
 
@@ -20,12 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        horizontalMove = joystick.Horizontal * runSpeed;
-        verticalMove = joystick.Vertical * runSpeed;
+        movement.x = joystick.Horizontal;
+        movement.y = joystick.Vertical;
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontalMove, verticalMove);
+        rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
     }
 }
