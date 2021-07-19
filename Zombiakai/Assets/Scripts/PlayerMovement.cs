@@ -22,7 +22,10 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMove = joystick.Horizontal * runSpeed;
         verticalMove = joystick.Vertical * runSpeed;
+    }
 
+    private void FixedUpdate()
+    {
         rb.velocity = new Vector2(horizontalMove, verticalMove);
     }
 }
